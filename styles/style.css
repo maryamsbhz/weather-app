@@ -19,3 +19,8 @@
 p{
   text-align: center;
 }
+#icon{
+  position: relative;
+  top: 40px;
+  right: 30px;
+}
