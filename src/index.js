@@ -61,18 +61,11 @@ function findLocation(position) {
 }
 
 
-function currentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(findLocation);
-}
 
 
 let form = document.querySelector("#search-city");
 form.addEventListener("submit",manageSubmit);
 
-
-let currentLocationButton = document.querySelector("#current-location");
-currentLocationButton.addEventListener("click",currentLocation);
 
 
 searchCity("Tehran");
