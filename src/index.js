@@ -39,7 +39,7 @@ function weather(response){
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   document.querySelector("#icon").setAttribute("alt", response.data.weather[0].description);
-  
+  temperatureElement = response.data.main.temp;
 }
 
 function searchCity(city){
@@ -64,8 +64,31 @@ function findLocation(position) {
   axios.get(apiUrl).then(weather);
 }
 
+function convertToFahrenheit(event){
+  event.preventDefault();
+  let temperature = document.querySelector(".temperature");
+  let fahrenheitTemp = (temperatureElement * 9 / 5) + 32;
+  temperature.innerHTML = Math.round(fahrenheitTemp);
+  celciusElement.classList.remove("active");
+  fahrenheitElement.classList.add("active");
+}
+
+function convertToCelcius(event){
+  event.preventDefault();
+  let temperature = document.querySelector(".temperature");
+  temperature.innerHTML = Math.round( temperatureElement);
+  celciusElement.classList.add("active");
+  fahrenheitElement.classList.remove("active")
+}
 
 
+let temperatureElement = null;
+
+let fahrenheitElement = document.querySelector("#fahrenheit-link");
+fahrenheitElement.addEventListener("click",convertToFahrenheit);
+
+let celciusElement = document.querySelector("#celcius-link");
+celciusElement.addEventListener("click",convertToCelcius);
 
 let form = document.querySelector("#search-city");
 form.addEventListener("submit",manageSubmit);
